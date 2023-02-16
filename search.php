@@ -30,17 +30,24 @@
                    <th>age</th>
                    <th>salary</th>
                    <th>jobrole</th>
-
-            </tr>
+                </tr>
 
             <?php
+
+
 
 if (isset($_POST["searchname"])){
     $search = $_POST["inputname"];
 
+if(empty($search)){
+    echo "Please enter a search phrase!";
+}else{
+
+
 //$sql= "SELECT * FROM fourinput WHERE name like '$search'";
 // "%search%" is used to search so that whenever you type a word, it will print all names with the alphabeth
-$sql= "SELECT * FROM fourinput WHERE name like '%$search%' || age like '%$search%' ";
+// $sql= "SELECT * FROM fourinput WHERE name like '%$search%' || age like '%$search%' || salary like '%$search%' || jobrole like '%$search%' ";
+$sql= "SELECT * FROM fourinput WHERE name like '%$search%' || age like '%$search%'";
 $query = mysqli_query($connect,$sql);
 while ($row = mysqli_fetch_assoc($query)){
     $id = $row ['id'];
@@ -55,11 +62,9 @@ while ($row = mysqli_fetch_assoc($query)){
                 <td> $age</td>
                 <td> $salary</td> 
                 <td> $jobrole</td>
-               
-               
-                
+                              
          </tr>";
-
+}
 }
 }
 ?>
